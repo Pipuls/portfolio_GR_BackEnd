@@ -8,11 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-
- //Getters y Setters
-@Getter @Setter
 
 //Entidad
 @Entity
@@ -31,4 +26,22 @@ public class Rol {
     public Rol(RolNombre rolNombre) {
         this.rolNombre = rolNombre;
     }
+// getter and setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public RolNombre getRolNombre() {
+        return rolNombre;
+    }
+
+    public void setRolNombre(RolNombre rolNombre) {
+        this.rolNombre = rolNombre;
+    }
+
 }

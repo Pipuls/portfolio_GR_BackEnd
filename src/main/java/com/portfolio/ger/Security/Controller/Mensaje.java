@@ -1,10 +1,5 @@
 package com.portfolio.ger.Security.Controller;
 
-import lombok.Getter;
-import lombok.Setter;
-
-//Getter y Setter
-@Getter @Setter
 public class Mensaje {
     private String mensaje;
 
@@ -16,4 +11,13 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
     
+    //geter and seter
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 }
