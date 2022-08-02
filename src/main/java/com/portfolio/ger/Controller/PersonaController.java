@@ -5,6 +5,7 @@ import com.portfolio.ger.Entity.Persona;
 import com.portfolio.ger.Interface.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +26,13 @@ public class PersonaController {
     public List<Persona> getPersona(){
         return ipersonaService.getPersona();
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/personas/crear")
     public String createPersona(@RequestBody Persona persona){
         ipersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/personas/borrar/{id}")
     public String deletePersona(@PathVariable Long id){
         ipersonaService.deletePersona(id);
@@ -39,15 +40,21 @@ public class PersonaController {
     }
     
     // URL:PUERTO/personas/editar/n/nombre & apellido & img
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/personas/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                            @RequestParam("nombre") String nuevoNombre,
                                            @RequestParam("apellido") String nuevoApellido,
-                                           @RequestParam("img") String nuevoImg){
+                                           @RequestParam("img") String nuevoImg,
+                                           @RequestParam("profesion1") String nuevoProfesion1,
+                                           @RequestParam("profesion2") String nuevoProfesion2
+    ){
         Persona persona = ipersonaService.findPersona(id);
         persona.setNombre(nuevoNombre);
         persona.setApellido(nuevoApellido);
         persona.setImg(nuevoImg);
+        persona.setProfesion1(nuevoProfesion1);
+        persona.setProfesion2(nuevoProfesion2);
         
         ipersonaService.savePersona(persona);
         return persona;

@@ -29,6 +29,11 @@ public class Persona implements Serializable {
     @Size(min = 3, max = 50, message = "Debe escribir al menos 3 caracteres y maximo 50.")
     private String img;
 
+    @NotNull
+    @Size(min = 3, max = 50, message = "Debe escribir al menos 3 caracteres y maximo 50.")
+    private String profesion1;
     
-    
+    @NotNull
+    @Size(min = 3, max = 50, message = "Debe escribir al menos 3 caracteres y maximo 50.")
+    private String profesion2;
 }
